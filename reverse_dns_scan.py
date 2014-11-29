@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # reverse_dns_scan.py
 
-from scapy.all import DNSQR, UDP, IP, sr1
+from scapy.all import DNS, DNSQR, UDP, IP, sr1
 from optparse import OptionParser
 
 parser = OptionParser()
@@ -50,9 +50,11 @@ def prepare_address(address):
 			return [[[fourth_octet + '.' + third_octet + '.' + second_octet + '.' + octets[0] + '.in-addr.arpa' \
 			for fourth_octet in range(0, 254)] for third_octet in range(0, 254)] for second_octet in range(0, 254)]
 		else:
+			raise Exception("Illegal IP address mask")
 		
 	except Exception as e:
-	
+		verbose_trace("In prepare_address: {0}".format(e))
+		
 if __name__ == __main__:
 	if opts.target is None or opts.server is None:
 		print("Bad arguments. Expected both nonempty target and server. Exiting..")
