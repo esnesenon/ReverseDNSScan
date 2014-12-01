@@ -51,7 +51,6 @@ def prepare_address(address):
 			for fourth_octet in range(0, 254)] for third_octet in range(0, 254)] for second_octet in range(0, 254)]
 		else:
 			raise Exception("Illegal IP address mask")
-		
 	except Exception as e:
 		verbose_trace("In prepare_address: {0}".format(e))
 		
